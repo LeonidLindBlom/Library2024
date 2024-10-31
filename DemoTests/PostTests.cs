@@ -1,3 +1,7 @@
+п»ї// <copyright file="PostTests.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 namespace DemoTests
 {
     using System;
@@ -11,7 +15,7 @@ namespace DemoTests
         [Test]
         public void Ctor_ValidData_Success()
         {
-            Assert.DoesNotThrow(() => _ = new Post("Тестовое название", 10000));
+            Assert.DoesNotThrow(() => _ = new Post("РўРµСЃС‚РѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ", 10000));
         }
 
         [Test]
@@ -24,15 +28,15 @@ namespace DemoTests
         [TestCase(-1)]
         public void Ctor_NegativeSalary_ExpectedArgumentOutOfRangeException(int salary)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Post("Тестовое название", salary));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Post("РўРµСЃС‚РѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ", salary));
         }
 
         [Test]
         public void Equals_ValidDataDifferentName_Success()
         {
             // Arrange
-            var post1 = new Post("Директор", 1000000);
-            var post2 = new Post("Уборщик", 10000);
+            var post1 = new Post("Р”РёСЂРµРєС‚РѕСЂ", 1000000);
+            var post2 = new Post("РЈР±РѕСЂС‰РёРє", 10000);
 
             // Act & Assert
             Assert.That(post1, Is.Not.EqualTo(post2));

@@ -9,7 +9,7 @@
         /// </summary>
         /// <param name="name">Название должности.</param>
         /// <param name="salary">Зароботная плата.</param>
-        public Post(string name, int salary)
+        public Post(string name, decimal salary)
         {
             this.ID = Guid.NewGuid();
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(salary);
@@ -30,22 +30,12 @@
         /// <summary>
         /// Заработная плата.
         /// </summary>
-        public int Salary { get; }
+        public decimal Salary { get; }
 
         /// <inheritdoc/>
         public bool Equals(Post? other)
         {
-            if (other is null)
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return false;
+            return (other is not null) && (ReferenceEquals(this, other) && (this.Name == other.Name));
         }
 
         /// <inheritdoc/>

@@ -10,15 +10,19 @@
         /// <param name="patronicName">Отчество.</param>
         /// <param name="dateBirth">Дата рорждения.</param>
         /// <param name="employee">Работник.</param>
-        public Kid(string firstName, string lastName, string patronicName, DateOnly dateBirth, Employee employee) 
-            : base(firstName, lastName, patronicName, dateBirth)
+        public Kid(string firstName, string lastName, string patronicName, DateOnly dateBirth, Employee employee, Gender gender) 
+            : base(firstName, lastName, patronicName, dateBirth, gender)
         {
             this.EmployeeID = employee.ID;
+            this.Gender = gender;
         }
 
         /// <summary>
         /// Идентификатор работника.
         /// </summary>
         public Guid EmployeeID { get; }
+
+
+        public Gender Gender { get; }
     }
 }
