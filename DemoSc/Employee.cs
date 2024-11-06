@@ -16,20 +16,22 @@ public sealed class Employee : Human
     /// <param name="dateBirth">День рождения.</param>
     /// <param name="post">Должность.</param>
     /// <param name="postID">Идентификатор должности.</param>
-    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Post post, Guid postID)
-        : base(firstName, lastName, patronicName, dateBirth)
+    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, Post post)
+        : base(firstName, lastName, patronicName, dateBirth, gender)
     {
         this.Post = post;
-        this.PostID = post.ID;
     }
-
-    /// <summary>
-    /// Идентификатор должности.
-    /// </summary>
-    public Guid PostID { get; }
 
     /// <summary>
     /// Должность.
     /// </summary>
     public Post Post { get; }
+
+    /// <inheritdoc/>
+    public override bool Equals(object? obj)
+    {
+        var temp = obj as Employee;
+        Post post = temp.Post;
+        return base.Equals((Human?)temp) && this.Post == post;
+    }
 }

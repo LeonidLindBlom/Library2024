@@ -11,13 +11,17 @@
         /// <param name="lastName">Фамилия.</param>
         /// <param name="patronicName">Отчество.</param>
         /// <param name="dateBirth">Дата рождения.</param>
-        public Human(string firstName, string lastName, string patronicName, DateOnly dateBirth)
+        /// <param name="gender">Пол.</param>
+        public Human(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender)
         {
             this.ID = Guid.NewGuid();
             this.FirstName = firstName.TrimOrNull() ?? throw new ArgumentNullException(nameof(firstName));
             this.LastName = lastName.TrimOrNull() ?? throw new ArgumentNullException(nameof(lastName));
             this.PatronicName = patronicName.TrimOrNull() ?? throw new ArgumentNullException(nameof(patronicName));
             this.DateBirth = dateBirth;
+            this.Gender = gender;
+
+
         }
 
         /// <summary>
@@ -45,39 +49,21 @@
         /// </summary>
         public DateOnly? DateBirth { get; }
 
+        /// <summary>
+        /// Пол.
+        /// </summary>
+        public Gender Gender { get; }
+
         /// /// <inheritdoc/>
         public bool Equals(Human? other)
         {
-            if (other is null)
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            if (this.FirstName != other.FirstName
-                || this.LastName != other.LastName
-                || this.PatronicName != other.PatronicName)
-            {
-                return false;
-            }
-
-            if (((this.DateBirth is not null) && (other.DateBirth is null))
-                || ((this.DateBirth is null) && (other.DateBirth is not null)))
-            {
-                return false;
-            }
-
-            if (this.DateBirth != other.DateBirth)
-            {
-                return false;
-            }
-
-            return true;
-        }
+            return other is not null
+                 && this.LastName == other.LastName
+                 && this.FirstName == other.FirstName
+                 && this.PatronicName == other.PatronicName
+                 && this.DateBirth == other.DateBirth
+                 && this.Gender == other.Gender;
+}
 
         /// <inheritdoc/>
         public override bool Equals(object? obj)
