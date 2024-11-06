@@ -16,17 +16,11 @@ public sealed class Employee : Human
     /// <param name="dateBirth">День рождения.</param>
     /// <param name="post">Должность.</param>
     /// <param name="postID">Идентификатор должности.</param>
-    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, Post post, Guid postID)
+    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, Post post)
         : base(firstName, lastName, patronicName, dateBirth, gender)
     {
         this.Post = post;
-        this.PostID = post.ID;
     }
-
-    /// <summary>
-    /// Идентификатор должности.
-    /// </summary>
-    public Guid PostID { get; }
 
     /// <summary>
     /// Должность.
