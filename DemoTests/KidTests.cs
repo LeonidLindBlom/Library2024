@@ -1,4 +1,8 @@
-﻿namespace DemoTests
+﻿// <copyright file="KidTests.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
+// </copyright>
+
+namespace DemoTests
 {
     using DemoSc;
 
@@ -6,7 +10,7 @@
 
     internal class KidTests
     {
-        private static readonly Employee Employee = new( "Имя", "Фамилия", "Отчество", new DateOnly(1955, 01, 01), Gender.Female, new("Тестовое название", 10000));
+        private static readonly Employee Employee = new ("Имя", "Фамилия", "Отчество", new DateOnly(1955, 01, 01), Gender.Female, new ("Тестовое название", 10000));
 
         [Test]
         public void Ctor_ValidDate_DoesNotThrow()
@@ -25,6 +29,5 @@
             // Act & Assert
             Assert.That(kid1, Is.Not.EqualTo(kid2));
         }
-
     }
 }

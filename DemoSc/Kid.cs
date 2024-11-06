@@ -1,9 +1,16 @@
-﻿namespace DemoSc
+﻿// <copyright file="Kid.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
+// </copyright>
+
+namespace DemoSc
 {
+    /// <summary>
+    /// Класс ребенок.
+    /// </summary>
     public class Kid : Human
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Kid"/> class.
+        /// Инициализирует новый экземпляр класса <see cref="Kid"/>.
         /// </summary>
         /// <param name="firstName"> Имя.</param>
         /// <param name="lastName">Фамилия.</param>
@@ -28,6 +35,12 @@
             var temp = obj as Kid;
             Employee employee = temp.Employee;
             return base.Equals((Human?)temp) && this.Employee == employee;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return 0;
         }
     }
 }

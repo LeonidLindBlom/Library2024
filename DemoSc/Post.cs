@@ -1,7 +1,14 @@
-﻿namespace DemoSc
+﻿// <copyright file="Post.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
+// </copyright>
+
+namespace DemoSc
 {
     using Exeptions;
 
+    /// <summary>
+    /// Класс должность.
+    /// </summary>
     public sealed class Post
     {
         /// <summary>

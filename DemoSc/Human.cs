@@ -1,11 +1,18 @@
-﻿namespace DemoSc
+﻿// <copyright file="Human.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
+// </copyright>
+
+namespace DemoSc
 {
     using Exeptions;
 
+    /// <summary>
+    /// Класс Человек.
+    /// </summary>
     public abstract class Human
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Human"/> class.
+        /// Инициализирует новый экземпляр класса <see cref="Human"/>.
         /// </summary>
         /// <param name="firstName">Имя.</param>
         /// <param name="lastName">Фамилия.</param>
@@ -20,8 +27,6 @@
             this.PatronicName = patronicName.TrimOrNull() ?? throw new ArgumentNullException(nameof(patronicName));
             this.DateBirth = dateBirth;
             this.Gender = gender;
-
-
         }
 
         /// <summary>
@@ -40,7 +45,7 @@
         public string LastName { get; }
 
         /// <summary>
-        /// Отчество
+        /// Отчество.
         /// </summary>
         public string PatronicName { get; }
 
@@ -54,7 +59,7 @@
         /// </summary>
         public Gender Gender { get; }
 
-        /// /// <inheritdoc/>
+        /// <inheritdoc/>
         public bool Equals(Human? other)
         {
             return other is not null
@@ -76,6 +81,5 @@
         {
             return this.FirstName.GetHashCode() * this.LastName.GetHashCode() * this.PatronicName.GetHashCode() * this.DateBirth.GetHashCode();
         }
-
     }
 }

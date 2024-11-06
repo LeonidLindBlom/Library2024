@@ -1,5 +1,5 @@
-﻿// <copyright file="PostTests.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="PostTests.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
 // </copyright>
 
 namespace DemoTests
