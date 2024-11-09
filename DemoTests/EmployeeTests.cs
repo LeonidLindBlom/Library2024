@@ -1,11 +1,15 @@
-﻿namespace DemoTests
+﻿// <copyright file="EmployeeTests.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
+// </copyright>
+
+namespace DemoTests
 {
     using DemoSc;
 
     [TestFixture]
     internal class EmployeeTests
     {
-        private static readonly Post Post = new("Тестовое название", 10000);
+        private static readonly Post Post = new ("Тестовое название", 10000);
 
         [Test]
         public void Ctor_ValidDate_DoesNotThrow()
@@ -25,4 +29,4 @@
             Assert.That(employee1, Is.Not.EqualTo(employee2));
         }
     }
-}    
+}

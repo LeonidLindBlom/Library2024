@@ -1,14 +1,17 @@
-﻿// <copyright file="Employee.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
+﻿// <copyright file="Employee.cs" company="Гылыба Л.Д.">
+// Copyright (c) Гылыба Л.Д.. All rights reserved.
 // </copyright>
 
 namespace DemoSc;
-
 using Exeptions;
+
+/// <summary>
+/// Класс работник.
+/// </summary>
 public sealed class Employee : Human
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Employee"/> class.
+    /// Инициализирует новый экземпляр класса <see cref="Employee"/>.
     /// </summary>
     /// <param name="firstName">Имя.</param>
     /// <param name="lastName">Фамилия.</param>
