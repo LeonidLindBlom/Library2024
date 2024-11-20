@@ -16,7 +16,10 @@ namespace DataAccessLayer.Configurations
         /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            throw new NotImplementedException();
+            _ = builder.HasKey(post => post.ID);
+            _ = builder.Property(post => post.Name).HasMaxLength(50).IsRequired();
+            _ = builder.Property(post => post.Salary).HasMaxLength(50).IsRequired();
+            _ = builder.HasMany(post => post.Employees).WithOne(employee => employee.Post);
         }
     }
 }

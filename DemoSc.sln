@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exeptions", "Exeptions\Exep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTests", "DemoTests\DemoTests.csproj", "{B2916DC3-A66F-48C1-9D00-92C911DDB24B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{DD7DA81B-D6E5-4ABA-81A5-A08A0B64E434}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{DD7DA81B-D6E5-4ABA-81A5-A08A0B64E434}"
 	ProjectSection(ProjectDependencies) = postProject
 		{04115B1C-5648-4410-B646-C95F1DBCF93C} = {04115B1C-5648-4410-B646-C95F1DBCF93C}
 	EndProjectSection
