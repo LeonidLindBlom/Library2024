@@ -30,7 +30,7 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Exeptions\Exeptions.csproj" />
+    <ProjectReference Include="..\Exeptions\Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

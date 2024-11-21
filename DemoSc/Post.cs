@@ -4,7 +4,7 @@
 
 namespace DemoSc
 {
-    using Exeptions;
+    using Extensions;
 
     /// <summary>
     /// Класс должность.

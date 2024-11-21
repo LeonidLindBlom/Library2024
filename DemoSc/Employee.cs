@@ -3,7 +3,7 @@
 // </copyright>
 
 namespace DemoSc;
-using Exeptions;
+using Extensions;
 using System.Linq.Expressions;
 
 /// <summary>
@@ -26,26 +26,15 @@ public sealed class Employee : Human
     /// <param name="patronicName">Отчество.</param>
     /// <param name="dateBirth">День рождения.</param>
     /// <param name="gender">Пол.</param>
-    /// <param name="kids">Дети.</param>
     /// <param name="post">Должность.</param>
-    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, ISet<Kid> kids, Gender gender, Post post)
+    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, Post post)
         : base(firstName, lastName, patronicName, dateBirth, gender)
     {
-        foreach (var kid in kids)
-        {
-            kid.AddEmployee(this);
-        }
 
         if (this.Post is not null)
         {
             _ = this.Post.AddEmployee(this);
         }
-    }
-
-    public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, Post post, params Kid[] kids) 
-        : this(firstName, lastName, patronicName, dateBirth, new HashSet<Kid>(kids), gender, post)
-    {
-
     }
 
     /// <summary>

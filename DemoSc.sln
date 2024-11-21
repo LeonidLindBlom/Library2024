@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoSc", "DemoSc\DemoSc.csproj", "{04115B1C-5648-4410-B646-C95F1DBCF93C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exeptions", "Exeptions\Exeptions.csproj", "{70882667-CCD4-41A6-BC13-0F8737D8B345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions", "Exeptions\Extensions.csproj", "{70882667-CCD4-41A6-BC13-0F8737D8B345}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTests", "DemoTests\DemoTests.csproj", "{B2916DC3-A66F-48C1-9D00-92C911DDB24B}"
 EndProject

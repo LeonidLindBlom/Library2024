@@ -29,6 +29,10 @@ namespace DemoSc
             : base(firstName, lastName, patronicName, dateBirth, gender)
         {
             this.Employees = employees;
+            foreach (var employee in employees)
+            {
+                employee.AddKid(this);
+            }
         }
 
         public Kid(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, params Employee[] employees) 

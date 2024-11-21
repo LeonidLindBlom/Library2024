@@ -2,7 +2,7 @@
 // Copyright (c) Гылыба Л.Д.. All rights reserved.
 // </copyright>
 
-namespace Exeptions
+namespace Extensions
 {
     /// <summary>
     /// Расширение для строкового типа.
