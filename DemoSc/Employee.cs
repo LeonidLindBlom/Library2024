@@ -30,7 +30,6 @@ public sealed class Employee : Human
     public Employee(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender, Post post)
         : base(firstName, lastName, patronicName, dateBirth, gender)
     {
-
         if (this.Post is not null)
         {
             _ = this.Post.AddEmployee(this);
@@ -41,7 +40,6 @@ public sealed class Employee : Human
     /// Работники с детьми.
     /// </summary>
     public ISet<Kid> Kids { get; set; } = new HashSet<Kid>();
-
 
     /// <summary>
     /// Добавление ребенка.
@@ -76,7 +74,7 @@ public sealed class Employee : Human
             return false;
         }
 
-        if (!this.Kids.Remove(kid)) 
+        if (!this.Kids.Remove(kid))
         {
             kid.Employees.Remove(this);
             return true;

@@ -62,7 +62,6 @@ namespace DemoSc
             return this;
         }
 
-
         /// <summary>
         /// Идентификатор.
         /// </summary>

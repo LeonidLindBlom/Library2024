@@ -5,29 +5,30 @@
 namespace DemoTests
 {
     using DemoSc;
+    using NUnit.Framework.Internal;
 
-    //[TestFixture]
+    [TestFixture]
 
-    //internal class KidTests
-    //{
-    //    private static readonly Employee Employee = new ("Имя", "Фамилия", "Отчество", new DateOnly(1955, 01, 01), Gender.Female, new ("Тестовое название", 10000));
+    internal class KidTests
+    {
+        private static readonly ISet<Employee> Employees = new HashSet<Employee>() { new ("Имя", "Фамилия", "Отчество", new DateOnly(1955, 01, 01), Gender.Female, new ("Тестовое название", 10000)) };
 
-    //    [Test]
-    //    public void Ctor_ValidDate_DoesNotThrow()
-    //    {
-    //        Assert.DoesNotThrow(() =>
-    //        _ = new Kid("Павлик", "Морозов", "Русланович", new DateOnly(2002, 09, 08), Employee, Gender.Male));
-    //    }
+        [Test]
+        public void Ctor_ValidDate_DoesNotThrow()
+        {
+            Assert.DoesNotThrow(() =>
+            _ = new Kid("Павлик", "Морозов", "Русланович", new DateOnly(2002, 09, 08), Employees, Gender.Male));
+        }
 
-    //    [Test]
-    //    public void Equals_ValidDataDifferentName_Success()
-    //    {
-    //        // Arrange
-    //        var kid1 = new Kid("Павлик", "Морозов", "Русланович", new DateOnly(2002, 09, 08), Employee, Gender.Male);
-    //        var kid2 = new Kid("Дима", "Степанов", "Гениевич", new DateOnly(1973, 01, 08), Employee, Gender.Female);
+        [Test]
+        public void Equals_ValidDataDifferentName_Success()
+        {
+            // Arrange
+            var kid1 = new Kid("Павлик", "Морозов", "Русланович", new DateOnly(2002, 09, 08), Employees, Gender.Male);
+            var kid2 = new Kid("Дима", "Степанов", "Гениевич", new DateOnly(1973, 01, 08), Employees, Gender.Female);
 
-    //        // Act & Assert
-    //        Assert.That(kid1, Is.Not.EqualTo(kid2));
-    //    }
-    //}
+            // Act & Assert
+            Assert.That(kid1, Is.Not.EqualTo(kid2));
+        }
+    }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="PostConfiguration.cs" company="Гылыба Л.Д.">
+﻿// <copyright file="EmployeeConfiguration.cs" company="Гылыба Л.Д.">
 // Copyright (c) Гылыба Л.Д.. All rights reserved.
 // </copyright>
 

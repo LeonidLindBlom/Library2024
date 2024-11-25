@@ -1,4 +1,4 @@
-﻿// <copyright file="Staff.cs" company="Гылыба Л.Д.">
+﻿// <copyright file="EnumerableExtensions.cs" company="Гылыба Л.Д.">
 // Copyright (c) Гылыба Л.Д.. All rights reserved.
 // </copyright>
 

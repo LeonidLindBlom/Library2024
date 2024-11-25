@@ -89,7 +89,7 @@ namespace DemoSc
         }
 
         /// <inheritdoc/>
-        public bool Equals(object? obj)
+        public override bool Equals(object? obj)
         {
             var temp = obj as Kid;
             ISet<Employee> employee = temp.Employees;

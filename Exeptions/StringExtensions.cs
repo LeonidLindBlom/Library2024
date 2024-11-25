@@ -28,7 +28,6 @@ namespace Extensions
             return trimmed.IsNullOrEmpty()
                  ? null
                  : trimmed;
-
         }
     }
 }
