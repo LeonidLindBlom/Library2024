@@ -5,14 +5,18 @@
 namespace DataAccessLayer
 {
     using System.Reflection;
-    using Microsoft.EntityFrameworkCore;
     using DemoSc;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Контекст доступа к данным.
     /// </summary>
     public class DataContext : DbContext
     {
+        public DataContext()
+          : base()
+        {
+        }
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="DataContext"/> class.
         /// </summary>
@@ -25,17 +29,17 @@ namespace DataAccessLayer
         /// <summary>
         /// Работники.
         /// </summary>
-        public DbSet<Employee> Employees { get; }
+        public DbSet<Employee> Employees { get; } = default!;
 
         /// <summary>
         /// Дети.
         /// </summary>
-        public DbSet<Kid> Kids { get; }
+        public DbSet<Kid> Kids { get; } = default!;
 
         /// <summary>
         /// Должности.
         /// </summary>
-        public DbSet<Post> Posts { get; }
+        public DbSet<Post> Posts { get; } = default!;
 
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,7 +50,7 @@ namespace DataAccessLayer
         /// <inheritdoc/>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("User ID=postgres;Password=1;Host=localhost;Port=5432;Database=Library;");
+            optionsBuilder.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=Library;");
         }
     }
 }
