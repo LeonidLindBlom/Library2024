@@ -18,5 +18,10 @@ namespace DemoSc
         /// Женский пол.
         /// </summary>
         Female,
+
+        /// <summary>
+        /// Неизвестно.
+        /// </summary>
+        Unknow,
     }
 }

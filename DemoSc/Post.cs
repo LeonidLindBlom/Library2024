@@ -5,18 +5,14 @@
 namespace DemoSc
 {
     using Extensions;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Класс должность.
     /// </summary>
-    public sealed class Post : IEquatable<Post>
+    public sealed class Post : Entity<Post>, IEquatable<Post>
     {
-        [Obsolete("For ORM only")]
-#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
-        private Post()
-#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
-        {
-        }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Post"/> class.
@@ -25,7 +21,6 @@ namespace DemoSc
         /// <param name="salary">Зароботная плата.</param>
         public Post(string name, decimal salary)
         {
-            this.ID = Guid.Empty;
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(salary);
             this.Salary = salary;
             this.Name = name.TrimOrNull() ?? throw new ArgumentNullException(nameof(name));
@@ -41,13 +36,11 @@ namespace DemoSc
         /// </summary>
         /// <param name="employee">работник.</param>
         /// <returns>Должность.</returns>
-        public Post AddEmployee(Employee employee)
+        public bool AddEmployee(Employee employee)
         {
-            ArgumentNullException.ThrowIfNull(employee);
-
-            this.Employees.Add(employee);
-            employee.Post = this;
-            return this;
+            return employee is not null
+               && this.Employees.Add(employee)
+               && (employee.Post = this) is not null;
         }
 
         /// <summary>
@@ -55,17 +48,12 @@ namespace DemoSc
         /// </summary>
         /// <param name="employee">Работник.</param>
         /// <returns>Работник удален.</returns>
-        public Post RemoveEmployee(Employee employee)
+        public bool RemoveEmployee(Employee employee)
         {
-            this.Employees.Remove(employee);
-            employee.Post = null;
-            return this;
+            return employee is not null
+               && this.Employees.Remove(employee)
+               && (employee.Post = this) is null;
         }
-
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid ID { get; }
 
         /// <summary>
         /// Название должности.

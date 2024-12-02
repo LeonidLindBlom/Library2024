@@ -4,33 +4,31 @@
 
 namespace DemoSc
 {
-    using Extensions;
+    using System;
+    using System.Text;
 
     /// <summary>
     /// Класс Человек.
     /// </summary>
-    public abstract class Human : IEquatable<Human>
+    public abstract class Human<THuman> : Entity<THuman>, IEquatable<THuman>
+        where THuman : Human<THuman>
     {
-        [Obsolete("For ORM only")]
-#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
-        protected Human()
-#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора "required" или объявления значения, допускающего значение NULL.
-        {
-        }
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Human"/>.
+        /// Инициализирует новый экземпляр класса <see cref="Human{THuman}"/>.
         /// </summary>
-        /// <param name="firstName">Имя.</param>
-        /// <param name="lastName">Фамилия.</param>
-        /// <param name="patronicName">Отчество.</param>
-        /// <param name="dateBirth">Дата рождения.</param>
-        /// <param name="gender">Пол.</param>
-        protected Human(string firstName, string lastName, string patronicName, DateOnly dateBirth, Gender gender)
+        /// <param name="fullName"> Полное имя.</param>
+        /// <param name="dateBirth"> Дата рождения. </param>
+        /// <param name="gender"> Пол. </param>
+        /// <exception cref="ArgumentNullException">
+        /// Если Полное имя <see langword="null"/>.
+        /// </exception>
+        protected Human(
+            Name fullName,
+            DateOnly? dateBirth = null,
+            Gender gender = Gender.Unknow)
         {
-            this.ID = Guid.NewGuid();
-            this.FirstName = firstName.TrimOrNull() ?? throw new ArgumentNullException(nameof(firstName));
-            this.LastName = lastName.TrimOrNull() ?? throw new ArgumentNullException(nameof(lastName));
-            this.PatronicName = patronicName.TrimOrNull() ?? throw new ArgumentNullException(nameof(patronicName));
+            this.ID = Guid.Empty;
+            this.FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
             this.DateBirth = dateBirth;
             this.Gender = gender;
         }
@@ -43,22 +41,12 @@ namespace DemoSc
         /// <summary>
         /// Имя.
         /// </summary>
-        public string FirstName { get; }
+        public Name FullName { get; }
 
         /// <summary>
-        /// Фамилия.
+        /// Дата р
         /// </summary>
-        public string LastName { get; }
-
-        /// <summary>
-        /// Отчество.
-        /// </summary>
-        public string PatronicName { get; }
-
-        /// <summary>
-        /// Дата рождения.
-        /// </summary>
-        public DateOnly? DateBirth { get; }
+        public DateOnly? DateBirth { get; set; }
 
         /// <summary>
         /// Пол.
@@ -66,26 +54,35 @@ namespace DemoSc
         public Gender Gender { get; }
 
         /// <inheritdoc/>
-        public bool Equals(Human? other)
-        {
-            return other is not null
-                 && this.LastName == other.LastName
-                 && this.FirstName == other.FirstName
-                 && this.PatronicName == other.PatronicName
-                 && this.DateBirth == other.DateBirth
-                 && this.Gender == other.Gender;
-}
+        public override bool Equals(object? obj) => obj is THuman person && this.Equals(person);
 
         /// <inheritdoc/>
-        public override bool Equals(object? obj)
+        public virtual bool Equals(THuman? other)
         {
-            return this.Equals(obj as Human);
+            if (other is null)
+            {
+                return false;
+            }
+
+            return this.FullName == other.FullName
+                && this.DateBirth == other.DateBirth;
         }
 
         /// <inheritdoc/>
-        public override int GetHashCode()
+        public override int GetHashCode() => HashCode.Combine(this.FullName, this.DateBirth);
+
+        /// <inheritdoc/>
+        public override string ToString()
         {
-            return this.FirstName.GetHashCode() * this.LastName.GetHashCode() * this.PatronicName.GetHashCode() * this.DateBirth.GetHashCode();
+            var buffer = new StringBuilder();
+            _ = buffer.Append(this.FullName);
+
+            if (this.DateBirth is not null)
+            {
+                _ = buffer.Append($" Год рождения: {this.DateBirth}");
+            }
+
+            return buffer.ToString();
         }
     }
 }
