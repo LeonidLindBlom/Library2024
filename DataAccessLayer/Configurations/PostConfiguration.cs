@@ -16,10 +16,10 @@ namespace DataAccessLayer.Configurations
         /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            _ = builder.HasKey(post => post.ID);
-            _ = builder.Property(post => post.Name).HasMaxLength(50).IsRequired();
-            _ = builder.Property(post => post.Salary).HasMaxLength(50).IsRequired();
-            _ = builder.HasMany(post => post.Employees).WithOne(employee => employee.Post);
+            _ = builder.HasKey(post => post.Id);
+            _ = builder.Property(post => post.Name).IsRequired();
+            _ = builder.Property(post => post.Salary).IsRequired();
+           // _ = builder.HasMany(post => post.Employees).WithOne(employee => employee.Post).IsRequired(false);
         }
     }
 }

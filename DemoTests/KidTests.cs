@@ -5,27 +5,32 @@
 namespace DemoTests
 {
     using DemoSc;
-    using NUnit.Framework.Internal;
+    using System;
+    using System.Collections.Generic;
+    using NUnit.Framework;
 
     [TestFixture]
 
     internal class KidTests
     {
-        private static readonly ISet<Employee> Employees = new HashSet<Employee>() { new ("Имя", "Фамилия", "Отчество", new DateOnly(1955, 01, 01), Gender.Female, new ("Тестовое название", 10000)) };
+        private static readonly Name NameValue = new ("Толстой", "Лев", "Николаевич");
+        private static readonly Name NameValue1 = new ("Галлер", "Кирилл", "Николаевич");
+        private static readonly Post Post = new ("Тестовое название", 10000);
+        private static readonly Employee Employee = new (NameValue, new DateOnly(2002, 09, 08), Gender.Male, Post);
 
         [Test]
         public void Ctor_ValidDate_DoesNotThrow()
         {
             Assert.DoesNotThrow(() =>
-            _ = new Kid("Павлик", "Морозов", "Русланович", new DateOnly(2002, 09, 08), Employees, Gender.Male));
+            _ = new Kid(NameValue, new DateOnly(2002, 09, 08), Gender.Male, Employee));
         }
 
         [Test]
         public void Equals_ValidDataDifferentName_Success()
         {
             // Arrange
-            var kid1 = new Kid("Павлик", "Морозов", "Русланович", new DateOnly(2002, 09, 08), Employees, Gender.Male);
-            var kid2 = new Kid("Дима", "Степанов", "Гениевич", new DateOnly(1973, 01, 08), Employees, Gender.Female);
+            var kid1 = new Kid(NameValue, new DateOnly(2002, 09, 08), Gender.Male, Employee);
+            var kid2 = new Kid(NameValue1, new DateOnly(1973, 01, 08), Gender.Female, Employee);
 
             // Act & Assert
             Assert.That(kid1, Is.Not.EqualTo(kid2));

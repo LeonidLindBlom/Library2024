@@ -16,13 +16,32 @@ namespace DataAccessLayer.Configurations
         /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            _ = builder.HasKey(employee => employee.ID);
-            _ = builder.Property(employee => employee.FirstName).HasMaxLength(50).IsRequired();
-            _ = builder.Property(employee => employee.LastName).HasMaxLength(50).IsRequired();
-            _ = builder.Property(employee => employee.PatronicName).HasMaxLength(50).IsRequired();
+            _ = builder.HasKey(employee => employee.Id);
+            _ = builder.OwnsOne(
+               employee => employee.FullName,
+               nameBuilder =>
+               {
+                   _ = nameBuilder.Property(name => name.FamilyName)
+                       .HasColumnName(nameof(Name.FamilyName))
+                       .HasMaxLength(100)
+                       .IsRequired()
+                       .HasComment("Фамилия");
+
+                   _ = nameBuilder.Property(name => name.FirstName)
+                       .HasColumnName(nameof(Name.FirstName))
+                       .HasMaxLength(100)
+                       .IsRequired()
+                       .HasComment("Имя");
+
+                   _ = nameBuilder.Property(name => name.PatronicName)
+                       .HasColumnName(nameof(Name.PatronicName))
+                       .HasMaxLength(100)
+                       .IsRequired()
+                       .HasComment("Отчество");
+               });
             _ = builder.Property(employee => employee.DateBirth).HasMaxLength(50).IsRequired();
             _ = builder.Property(employee => employee.Gender).IsRequired();
-            _ = builder.HasOne(employee => employee.Post).WithMany(post => post.Employees).IsRequired(false);
+            _ = builder.HasOne(employee => employee.Post).WithMany(post => post.Employees).IsRequired();
             _ = builder.HasMany(employee => employee.Kids).WithMany(kid => kid.Employees);
         }
     }
