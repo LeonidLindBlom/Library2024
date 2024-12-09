@@ -26,7 +26,7 @@ namespace DataAccessLayer.Tests
             var name = new Name("Толстой", "Лев", "Николаевич");
             var kidName = new Name("Бипкин", "Анатолий", "Васильевич");
             var post = new Post("Тест", 1010010);
-            var employee = new Employee(name, new DateOnly(1977, 09, 08), Gender.Male, post);
+            var employee = new Employee(name, new DateOnly(1977, 09, 08), Gender.Male);
             var kid = new Kid(kidName, new DateOnly(2002, 09, 08), Gender.Male, employee);
 
             // act

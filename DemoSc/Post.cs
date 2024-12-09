@@ -29,7 +29,7 @@ namespace DemoSc
         /// <summary>
         /// Работники.
         /// </summary>
-        public ISet<Employee> Employees { get; set; } = new HashSet<Employee>();
+        public ISet<Employee> Employees { get; } = new HashSet<Employee>();
 
         /// <summary>
         /// Добавить работника.
@@ -58,12 +58,12 @@ namespace DemoSc
         /// <summary>
         /// Название должности.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Заработная плата.
         /// </summary>
-        public decimal Salary { get; }
+        public decimal Salary { get; set; }
 
         /// <inheritdoc/>
         public bool Equals(Post? other)

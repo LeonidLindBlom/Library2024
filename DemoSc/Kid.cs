@@ -25,7 +25,7 @@ namespace DemoSc
         public Kid(Name fullName, DateOnly dateBirth, ISet<Employee> employees, Gender gender)
             : base(fullName, dateBirth, gender)
         {
-            this.Employees = employees;
+            this.Employees = employees ?? throw new ArgumentNullException(nameof(employees));
             foreach (var employee in employees)
             {
                 employee.AddKid(this);
@@ -58,52 +58,9 @@ namespace DemoSc
         {
         }
 
-
         /// <summary>
         /// Работник.
         /// </summary>
-        public ISet<Employee> Employees { get; set; } = new HashSet<Employee>();
-
-        /// <summary>
-        /// Добавление работника.
-        /// </summary>
-        /// <param name="employee">Работник.</param>
-        /// <returns>Работник добавлен.</returns>
-        public bool AddEmployee(Employee employee)
-        {
-            if (employee is null)
-            {
-                return false;
-            }
-
-            if (this.Employees.Add(employee))
-            {
-                _ = employee.Kids.Add(this);
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Удаление работника.
-        /// </summary>
-        /// <param name="employee">Работник.</param>
-        /// <returns>Работник удален.</returns>
-        public bool RemoveEmployee(Employee employee)
-        {
-            if (employee is null)
-            {
-                return false;
-            }
-
-            if (!this.Employees.Remove(employee))
-            {
-                employee.Kids.Remove(this);
-                return true;
-            }
-
-            return false;
-        }
+        public ISet<Employee> Employees { get; } = new HashSet<Employee>();
     }
 }

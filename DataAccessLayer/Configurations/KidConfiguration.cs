@@ -40,8 +40,8 @@ namespace DataAccessLayer.Configurations
                        .HasComment("Отчество");
                });
             _ = builder.Property(kid => kid.DateBirth).HasMaxLength(50).IsRequired();
-            _ = builder.Property(kid => kid.Gender).IsRequired();
             _ = builder.HasMany(kid => kid.Employees).WithMany(employee => employee.Kids);
+            _ = builder.Property(kid => kid.Gender).IsRequired();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace DataAccessLayer.Configurations
             _ = builder.HasKey(post => post.Id);
             _ = builder.Property(post => post.Name).IsRequired();
             _ = builder.Property(post => post.Salary).IsRequired();
-            _ = builder.HasIndex(shelf => shelf.Name).IsUnique();
+           // _ = builder.HasMany(post => post.Employees).WithOne(employee => employee.Post).IsRequired(false);
         }
     }
 }

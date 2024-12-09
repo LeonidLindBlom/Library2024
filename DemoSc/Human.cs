@@ -10,7 +10,7 @@ namespace DemoSc
     /// <summary>
     /// Класс Человек.
     /// </summary>
-    public abstract class Human<THuman> : Entity<THuman>, IEquatable<THuman>
+    public abstract class Human<THuman> : Entity<THuman>
         where THuman : Human<THuman>
     {
         /// <summary>
@@ -27,16 +27,10 @@ namespace DemoSc
             DateOnly? dateBirth = null,
             Gender gender = Gender.Unknow)
         {
-            this.ID = Guid.Empty;
             this.FullName = fullName ?? throw new ArgumentNullException(nameof(fullName));
             this.DateBirth = dateBirth;
             this.Gender = gender;
         }
-
-        /// <summary>
-        /// Идентификатор.
-        /// </summary>
-        public Guid ID { get; }
 
         /// <summary>
         /// Имя.
@@ -54,17 +48,16 @@ namespace DemoSc
         public Gender Gender { get; }
 
         /// <inheritdoc/>
-        public override bool Equals(object? obj) => obj is THuman person && this.Equals(person);
+        public override bool Equals(object? obj)
+        {
+            return obj is THuman person && this.Equals(person);
+        }
 
         /// <inheritdoc/>
-        public virtual bool Equals(THuman? other)
+        public override bool Equals(THuman? other)
         {
-            if (other is null)
-            {
-                return false;
-            }
-
-            return this.FullName == other.FullName
+            return base.Equals(other)
+                && this.FullName == other.FullName
                 && this.DateBirth == other.DateBirth;
         }
 

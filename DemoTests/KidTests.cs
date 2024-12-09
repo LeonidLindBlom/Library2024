@@ -17,21 +17,20 @@ namespace DemoTests
         private static readonly Name NameValue1 = new ("Галлер", "Кирилл", "Николаевич");
         private static readonly Post Post = new ("Тестовое название", 10000);
         private static readonly Employee Employee = new (NameValue, new DateOnly(2002, 09, 08), Gender.Male, Post);
-        private static readonly ISet<Employee> Employees = new HashSet<Employee>() { Employee };
 
         [Test]
         public void Ctor_ValidDate_DoesNotThrow()
         {
             Assert.DoesNotThrow(() =>
-            _ = new Kid(NameValue, new DateOnly(2002, 09, 08), Employees, Gender.Male));
+            _ = new Kid(NameValue, new DateOnly(2002, 09, 08), Gender.Male, Employee));
         }
 
         [Test]
         public void Equals_ValidDataDifferentName_Success()
         {
             // Arrange
-            var kid1 = new Kid(NameValue, new DateOnly(2002, 09, 08), Employees, Gender.Male);
-            var kid2 = new Kid(NameValue, new DateOnly(1973, 01, 08), Employees, Gender.Female);
+            var kid1 = new Kid(NameValue, new DateOnly(2002, 09, 08), Gender.Male, Employee);
+            var kid2 = new Kid(NameValue1, new DateOnly(1973, 01, 08), Gender.Female, Employee);
 
             // Act & Assert
             Assert.That(kid1, Is.Not.EqualTo(kid2));

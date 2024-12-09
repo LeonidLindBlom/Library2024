@@ -41,12 +41,12 @@ namespace DataAccessLayer
         /// <summary>
         /// Работники.
         /// </summary>
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employees { get; init; }
 
         /// <summary>
         /// Дети.
         /// </summary>
-        public DbSet<Kid> Kids { get; set; }
+        public DbSet<Kid> Kids { get; init; }
 
         /// <summary>
         /// Должности.

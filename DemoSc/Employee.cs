@@ -19,9 +19,10 @@ namespace DemoSc
         /// <param name="dateBirth">День рождения.</param>
         /// <param name="gender">Пол.</param>
         /// <param name="post">Должность.</param>
-        public Employee(Name fullName, DateOnly dateBirth, Gender gender, Post post)
+        public Employee(Name fullName, DateOnly dateBirth, Gender gender, Post? post = null)
             : base(fullName, dateBirth, gender)
         {
+            this.Post = post;
             if (this.Post is not null)
             {
                 _ = this.Post.AddEmployee(this);
@@ -33,14 +34,14 @@ namespace DemoSc
         /// </summary>
         [Obsolete("For ORM only", true)]
         private Employee() 
-            : base(Name.Unknown, DateOnly.MaxValue, Gender.Unknow)
+            : base(Name.Unknown)
         {
         }
 
         /// <summary>
         /// Работники с детьми.
         /// </summary>
-        public ISet<Kid> Kids { get; set; } = new HashSet<Kid>();
+        public ISet<Kid> Kids { get; } = new HashSet<Kid>();
 
         /// <summary>
         /// Добавление ребенка.
@@ -49,18 +50,9 @@ namespace DemoSc
         /// <returns>Ребенок добавлен.</returns>
         public bool AddKid(Kid kid)
         {
-            if (kid is null)
-            {
-                return false;
-            }
-
-            if (this.Kids.Add(kid))
-            {
-                _ = kid.Employees.Add(this);
-                return true;
-            }
-
-            return false;
+            return kid is not null
+                   && this.Kids.Add(kid)
+                   && kid.Employees.Add(this);
         }
 
         /// <summary>
@@ -70,18 +62,9 @@ namespace DemoSc
         /// <returns>Ребенок удален.</returns>
         public bool RemoveKid(Kid kid)
         {
-            if (kid is null)
-            {
-                return false;
-            }
-
-            if (!this.Kids.Remove(kid))
-            {
-                kid.Employees.Remove(this);
-                return true;
-            }
-
-            return false;
+            return kid is not null
+                  && this.Kids.Remove(kid)
+                  && kid.Employees.Remove(this);
         }
 
         /// <summary>

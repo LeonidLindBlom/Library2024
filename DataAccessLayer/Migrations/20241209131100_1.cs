@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -96,12 +96,6 @@ namespace DataAccessLayer.Migrations
                 name: "IX_Employees_PostId",
                 table: "Employees",
                 column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Posts_Name",
-                table: "Posts",
-                column: "Name",
-                unique: true);
         }
 
         /// <inheritdoc />

@@ -14,6 +14,7 @@ namespace DemoTests
     {
         private static readonly Post Post = new ("Тестовое название", 10000);
         private static readonly Name NameValue = new ("Толстой", "Лев", "Николаевич");
+        private static readonly Name OtherValue = new ("Пупукакин", "Чел", "Николаевич");
 
         [Test]
         public void Ctor_ValidDate_DoesNotThrow()
@@ -26,8 +27,8 @@ namespace DemoTests
         public void Equals_ValidDataDifferentName_Success()
         {
             // Arrange
-            var employee1 = new Employee(NameValue, new DateOnly(1828, 09, 28), Gender.Male, Post);
-            var employee2 = new Employee(NameValue, new DateOnly(1799, 06, 06), Gender.Male, Post);
+            var employee1 = new Employee(NameValue, new DateOnly(1828, 09, 28), Gender.Male);
+            var employee2 = new Employee(OtherValue, new DateOnly(1799, 06, 06), Gender.Male);
 
             // Act & Assert
             Assert.That(employee1, Is.Not.EqualTo(employee2));

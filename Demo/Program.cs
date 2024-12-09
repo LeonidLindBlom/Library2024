@@ -23,7 +23,6 @@ namespace Demo
             {
                 var postRepository = new PostRepository(dataContext);
                 _ = postRepository.Create(new Post("Уборщик", 10000000));
-                _ = postRepository.Save();
 
                 foreach (var post in postRepository.GetAll())
                 {
